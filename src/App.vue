@@ -1,21 +1,20 @@
-<template>
+<template xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
   <div id="app">
     <img src="./assets/logo.png">
     <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+
+    <!--<input v-bind:type="type" v-bind:value="msg">-->
+    <!--<input :value="msg">-->
+    <input v-model="msg">
+    <!--<button v-on:click="changeMsg" >click me</button>-->
+    <button @click="changeMsg" >click me</button>
+    <hr>
+    firstName: <input v-model="firstName"><br>
+    lastName: <input v-model="lastName"> <br>
+    fullName: {{getFullName()}}<br>
+    fullName: {{fullName}}<br>
+    fullNameWatch: {{fullNameWatch}}<br>
+
   </div>
 </template>
 
@@ -24,9 +23,35 @@ export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      type: 'button',
+      firstName: 'zhang',
+      lastName: 'andy',
+      fullNameWatch:'zhang andy'
+    }
+  },
+  methods:{
+      changeMsg(){
+         this.msg = 'andy'
+      },
+      getFullName(){
+          return this.firstName+"  "+this.lastName
+      }
+  },
+  computed:{
+      fullName(){
+        return this.firstName+"  "+this.lastName
+      }
+  },
+  watch:{
+    firstName:function (val) {
+      this.fullNameWatch=val+'  '+this.lastName;
+    },
+    lastName:function (val) {
+      this.fullNameWatch=this.lastName+'  '+ val;
     }
   }
+
 }
 </script>
 
