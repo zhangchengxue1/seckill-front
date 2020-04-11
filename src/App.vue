@@ -1,4 +1,4 @@
-<template xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<template xmlns="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
   <div id="app">
     <img src="./assets/logo.png">
     <!--<h1 v-if="flag>3">{{ msg }}</h1>-->
@@ -6,6 +6,13 @@
     <!--<h1 v-else>222</h1>-->
     <!--<h1 v-for="item in list">{{item}}</h1>-->
     <h1 v-for="(item,index) in list " :key="index">{{item}} - {{index}}</h1>
+
+    <hr>
+    <button-counter :propName="a">
+      <span>
+        4564647
+      </span>
+    </button-counter>
 
     <!--<input v-bind:type="type" v-bind:value="msg">-->
     <!--<input :value="msg">-->
@@ -33,8 +40,12 @@
 </template>
 
 <script>
-export default {
+  import ButtonCounter from './components/ButtonCount.vue'
+ export default {
   name: 'app',
+   components:{
+     ButtonCounter
+  },
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
@@ -45,7 +56,8 @@ export default {
       flag:4,
       list:[111,222,333],
       name:'',
-      userList:[]
+      userList:[],
+      a:'AAA'
     }
   },
   methods:{
