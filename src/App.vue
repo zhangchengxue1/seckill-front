@@ -1,10 +1,5 @@
 <template>
   <div id="app">
-    app
-    <router-link to="/foo">Go to Foo</router-link>
-    <router-link to="/bar">Go to Bar</router-link>
-    <button @click="gotoByUrl('/foo')">Go to Foo</button>
-    <button @click="gotoByUrl('/bar')">Go toBar</button>
     <router-view></router-view>
   </div>
 </template>
@@ -16,40 +11,31 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
-  },
-  methods:{
-    gotoByUrl(url){
-        this.$router.push(url);
-    }
   }
 }
-</script>
+</script >
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
+<style lang="scss">
+  html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family :"PingFang SC","Helvetica Neue","Hiragino Sans GB","Segoe UI","Microsoft YaHei","微软雅黑",sans-serif;
+  }
+  #app {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  a {
+    text-decoration: none;
+  }
 </style>
