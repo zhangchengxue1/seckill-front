@@ -16,6 +16,7 @@
 </template>
 
 <script>
+  import qs from "qs"
 export default {
   name: 'login',
   data () {
@@ -37,12 +38,25 @@ export default {
   },
   methods:{
     login(formName) {
-      this.$refs[formName].validate((valid) => {
+        var self = this ;
+      self.$refs[formName].validate((valid) => {
         if (valid) {
-          alert('submit!');
-        } else {
-          console.log('error submit!!');
-          return false;
+          self.axios.post('/api/login',qs.stringify({username:this.user.username,password:this.user.password}))
+            .then(function (response) {
+              var result=response.data;
+              if(result.code==200){
+                self.$message.success(result.message)
+                self.$router.push("/foo")
+              }else{
+                self.$message.error(result.message)
+              }
+              console.log(response);
+            })
+            .catch(function (error) {
+              // handle error
+              console.log(error);
+              self.$message.error("系统错误~")
+            })
         }
       });
     },

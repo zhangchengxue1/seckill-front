@@ -3,7 +3,8 @@ import  Bar from "../../components/Bar.vue"
 import  Login from "../../components/Login.vue"
 
 export default [
-  { path: '/foo', component: Foo },
+  { path: '/', component: Login },
   { path: '/bar', component: Bar },
+  { path: '/foo', component: Foo },
   { path: '/login', component: Login }
   ]
