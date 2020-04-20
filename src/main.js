@@ -5,6 +5,7 @@ import ElementUi from 'element-ui'
 import Axios from 'axios'
 import VueAxios from 'vue-axios'
 import Qs from 'qs'
+import Vuex from 'vuex'
 
 // import css
 import 'element-ui/lib/theme-chalk/index.css'
@@ -15,11 +16,35 @@ Vue.use(VueRouter)
 Vue.use(ElementUi)
 Vue.use(VueAxios, Axios)
 Vue.use(Qs)
+Vue.use(Vuex)
 
 
 Axios.defaults.baseURL = 'http://localhost:8080'
 Axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
 Axios.defaults.withCredentials = true
+
+const store = new Vuex.Store({
+  state:{
+    username : 'aa'
+  },
+  mutations:{
+    changeUsername(state,payload){
+      state.username = payload.username;
+    }
+  },
+  actions:{
+    changeMyUsername(context,payload){
+      context.commit('changeUsername',payload)
+    }
+  },
+  getters:{
+    getUsername(state){
+      return state.username;
+    }
+  }
+})
+
+Vue.prototype.$store =  store ;
 
 const router = new VueRouter({
   mode:"history",
@@ -28,6 +53,7 @@ const router = new VueRouter({
 
 
 new Vue({
+  store,
   router,
   el: '#app',
   render: h => h(App)

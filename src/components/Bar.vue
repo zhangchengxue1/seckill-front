@@ -1,6 +1,6 @@
 <template>
   <div id="bar">
-    bar
+    bar  ---{{getUsername}}
   </div>
 </template>
 
@@ -9,8 +9,12 @@ export default {
   name: 'bar',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
     }
+  },
+  computed:{
+      getUsername : function () {
+        return this.$store.getters.getUsername
+      }
   }
 }
 </script>

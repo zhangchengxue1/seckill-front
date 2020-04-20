@@ -41,11 +41,12 @@ export default {
         var self = this ;
       self.$refs[formName].validate((valid) => {
         if (valid) {
-          self.axios.post('/api/login',qs.stringify({username:this.user.username,password:this.user.password}))
+          self.axios.post('/api/login',qs.stringify({username:self.user.username,password:self.user.password}))
             .then(function (response) {
               var result=response.data;
               if(result.code==200){
                 self.$message.success(result.message)
+                self.$store.dispatch('changeMyUsername',{username:self.user.username})
                 self.$router.push("/foo")
               }else{
                 self.$message.error(result.message)
