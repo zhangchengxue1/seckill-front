@@ -11,6 +11,7 @@ import Vuex from 'vuex'
 import 'element-ui/lib/theme-chalk/index.css'
 
 import routes from './js/router/routers.js'
+import modules from './js/store/store-modules.js'
 
 Vue.use(VueRouter)
 Vue.use(ElementUi)
@@ -24,24 +25,7 @@ Axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded;char
 Axios.defaults.withCredentials = true
 
 const store = new Vuex.Store({
-  state:{
-    username : 'aa'
-  },
-  mutations:{
-    changeUsername(state,payload){
-      state.username = payload.username;
-    }
-  },
-  actions:{
-    changeMyUsername(context,payload){
-      context.commit('changeUsername',payload)
-    }
-  },
-  getters:{
-    getUsername(state){
-      return state.username;
-    }
-  }
+  modules: modules
 })
 
 Vue.prototype.$store =  store ;

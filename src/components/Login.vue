@@ -41,22 +41,15 @@ export default {
         var self = this ;
       self.$refs[formName].validate((valid) => {
         if (valid) {
-          self.axios.post('/api/login',qs.stringify({username:self.user.username,password:self.user.password}))
-            .then(function (response) {
-              var result=response.data;
-              if(result.code==200){
-                self.$message.success(result.message)
-                self.$store.dispatch('changeMyUsername',{username:self.user.username})
-                self.$router.push("/foo")
-              }else{
-                self.$message.error(result.message)
-              }
-              console.log(response);
+//          self.$message.success(result.message)
+//          self.$router.push("/foo")
+          self.$store.dispatch('login',{username:self.user.username,password:self.user.password})
+            .then((response) => {
+              self.$message.success(response.data.message)
+              self.$router.push('/foo');
             })
-            .catch(function (error) {
-              // handle error
-              console.log(error);
-              self.$message.error("系统错误~")
+            .catch((response) => {
+              self.$message.error(response.data.message)
             })
         }
       });
