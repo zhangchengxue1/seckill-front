@@ -1,6 +1,5 @@
 <template>
-  <div id="portal-template">
-      <img class="portal-logo" src="../assets/images/logo.png">
+  <PortalTemplate>
       <div id="login">
         <el-form label-position="top" label-width="80px" :model="user" :rules="rules" ref="ruleForm" >
           <el-form-item label="用户名" prop="username">
@@ -11,14 +10,19 @@
           </el-form-item>
           <el-button class="submit-btn" type="primary" @click="login('ruleForm')" >登入</el-button>
         </el-form>
+        <router-link to="/register"><el-button type="text" icon="el-icon-edit">去注册页</el-button></router-link>
       </div>
-  </div>
-</template>
+  </PortalTemplate>
+  </template>
 
 <script>
   import qs from "qs"
+  import PortalTemplate from './PortalTemplate'
 export default {
   name: 'login',
+  components: {
+    PortalTemplate
+  },
   data () {
     return {
         user:{
@@ -59,5 +63,4 @@ export default {
 </script>
 
 <style>
-@import "../assets/css/portal-template.css";
 </style>
