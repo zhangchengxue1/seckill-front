@@ -50,7 +50,7 @@ export default {
           self.$store.dispatch('login',{username:self.user.username,password:self.user.password})
             .then((response) => {
               self.$message.success(response.data.message)
-              self.$router.push('/foo');
+              self.$router.push('/home/course/list');
             })
             .catch((response) => {
               self.$message.error(response.data.message)
